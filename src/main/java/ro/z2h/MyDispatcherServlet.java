@@ -1,5 +1,6 @@
 package ro.z2h;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import ro.z2h.annotation.MyController;
 import ro.z2h.annotation.MyRequestMethod;
 import ro.z2h.controller.DepartmentController;
@@ -16,6 +17,7 @@ import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -54,12 +56,14 @@ public class MyDispatcherServlet extends HttpServlet {
     private void reply(Object r, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html");
         PrintWriter writer = resp.getWriter();
-        writer.printf(r.toString());
+        ObjectMapper objectMapper = new ObjectMapper();
+        writer.printf(objectMapper.writeValueAsString(r));
     }
 
     /* delegate tasks*/
     private Object dispatch(String httpMethod, HttpServletRequest req, HttpServletResponse resp) {
         String pathInfo = req.getPathInfo();
+        Map<String, String[]> parameterMap = req.getParameterMap();
 //        if(pathInfo.startsWith("/employee")) {
 //            EmployeeController employeeController = new EmployeeController();
 //            return employeeController.getAllEmployees();
