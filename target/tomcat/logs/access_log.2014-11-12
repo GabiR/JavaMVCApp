@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [12/Nov/2014:15:48:32 +0200] "GET /app/mvc/department/ HTTP/1.1" 200 5 http-bio-8080-exec-1 121
+0:0:0:0:0:0:0:1 - - [12/Nov/2014:15:49:00 +0200] "GET /app/mvc/ HTTP/1.1" 200 5 http-bio-8080-exec-3 2
